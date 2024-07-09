@@ -1,7 +1,7 @@
 import { Box, Button, Container, Stack } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-export function OtherNavbar() {
+export default function OtherNavbar() {
   const authMember = null;
   return <div className="other-navbar">
 			<Container className="navbar-container">
@@ -60,4 +60,5 @@ export function OtherNavbar() {
 				</Stack>
 			</Container>
   </div> 
+  
 }
