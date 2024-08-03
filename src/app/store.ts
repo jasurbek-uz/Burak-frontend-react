@@ -1,15 +1,17 @@
 import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
 import HomePageReducer from "./screens/homePage/slice";
+import ProductsPage from "./screens/productsPage";
+import ProductsPageReducer from "./screens/productsPage/slice";
 
 
 export const store = configureStore({
-  middleware: (getDefaultMiddleware) =>
-    // @ts-ignore
-    getDefaultMiddleware().concat(reduxLogger),
-  reducer: {
-    homePage:HomePageReducer
-  },
-  
+	middleware: (getDefaultMiddleware) =>
+		// @ts-ignore
+		getDefaultMiddleware().concat(reduxLogger),
+	reducer: {
+		homePage: HomePageReducer,
+		productsPage: ProductsPageReducer,
+	},
 });
 
 export type AppDispatch = typeof store.dispatch;
@@ -20,3 +22,6 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+
+
