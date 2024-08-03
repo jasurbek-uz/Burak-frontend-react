@@ -8,7 +8,7 @@ export const retrievePopularDishes = createSelector(
   (HomePage) => HomePage.popularDishes
 );
 
-export const retrievenewDishes = createSelector(
+export const retrieveNewDishes = createSelector(
   selectHomePage,
   (HomePage) => HomePage.newDishes
 );
