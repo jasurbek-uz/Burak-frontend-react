@@ -16,7 +16,7 @@ class MemberService {
 
 			return result.data;
 		} catch (err) {
-			console.log("Error, getTopUsers:", err);
+			console.log("Erros, getTopUsers:", err);
 			throw err;
 		}
 	}

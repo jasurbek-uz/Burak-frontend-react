@@ -21,7 +21,7 @@ class ProductService {
 
 			return result.data;
 		} catch (err) {
-			console.log("Error, getProduct:", err);
+			console.log("Erros, getProducts:", err);
 			throw err;
 		}
 	}

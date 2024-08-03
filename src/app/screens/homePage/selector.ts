@@ -1,19 +1,18 @@
-import { createSelector } from "reselect";
-import { AppRootState } from "../../../lib/types/screen";
+import { createSelector } from "@reduxjs/toolkit";
+import { AppRootState, HomePageState } from "../../../lib/types/screen";
 
 const selectHomePage = (state: AppRootState) => state.homePage;
-
 export const retrievePopularDishes = createSelector(
-  selectHomePage,
-  (HomePage) => HomePage.popularDishes
+	selectHomePage,
+	(homePage: HomePageState) => homePage.popularDishes
 );
 
 export const retrieveNewDishes = createSelector(
-  selectHomePage,
-  (HomePage) => HomePage.newDishes
+	selectHomePage,
+	(homePage: HomePageState) => homePage.newDishes
 );
 
 export const retrieveTopUsers = createSelector(
-  selectHomePage,
-  (HomePage) => HomePage.topUsers
+	selectHomePage,
+	(homePage: HomePageState) => homePage.topUsers
 );
