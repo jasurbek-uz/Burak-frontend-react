@@ -13,16 +13,18 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import MemberService from "../../services/MemberService";
 import "../../../css/home.css";
+import { Member } from "../../../lib/types/member";
 
 // redux slice & selector
 const actionDispatch = (dispatch: Dispatch) =>({
   setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
-  setNewDishes:(data:Product[])=> dispatch (setNewDishes(data))
+  setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
+  setTopUsers:(data:Member[])=> dispatch(setTopUsers(data)),
 });
 
 
 export default function HomePage() {
-  const { setPopularDishes, setNewDishes } = actionDispatch(useDispatch());
+  const { setPopularDishes, setNewDishes, setTopUsers } = actionDispatch(useDispatch());
    // selector:store =>data
 
   useEffect(() => {
