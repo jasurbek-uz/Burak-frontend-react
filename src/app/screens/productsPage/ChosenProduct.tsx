@@ -50,7 +50,7 @@ export default function ChosenProduct() {
     product
       .getProduct(productId)
       .then(data => setChosenProduct(data))
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
     
     const member = new MemberService();
     member
@@ -58,6 +58,7 @@ export default function ChosenProduct() {
       .then((data) => setRestaurant(data))
       .catch((err) => console.log(err));
   }, []);
+
   if (!chosenProduct) return null;
 	return (
 		<div className={"chosen-product"}>
