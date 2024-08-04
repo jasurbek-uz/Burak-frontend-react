@@ -53,7 +53,7 @@ export default function Products() {
   });
   
   const [searchText, setSearchText] = useState<string>(""); 
-  const histroy = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
     const product = new ProductService();
@@ -91,9 +91,9 @@ export default function Products() {
     setProductSearch({ ...productSearch });
   }
   
- const chooseDishHandler = (id: string) => {
+  const choosenDishesHandler = (id: string) => {
 		history.push(`/products/${id}`);
- };
+	};
 
 	return (
 		<div className={"products"}>
@@ -249,8 +249,7 @@ export default function Products() {
 										<Stack
 											key={product._id}
 											className={"product-card"}
-											onClick={() => chooseDishHandler(product._id)}
-										>
+											onClick={() => choosenDishesHandler(product._id)}>
 											<Stack
 												className={"product-img"}
 												sx={{ backgroundImage: `url(${imagePath})` }}

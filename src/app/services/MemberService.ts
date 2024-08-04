@@ -21,7 +21,7 @@ class MemberService {
 		}
 	}
 
-	public async getRestaurant(): Promise<Member[]> {
+	public async getRestaurant(): Promise<Member> {
 		try {
 			const url = this.path + "/member/resturant";
       const result = await axios.get(url);
