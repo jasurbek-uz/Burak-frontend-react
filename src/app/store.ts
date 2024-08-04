@@ -1,5 +1,6 @@
 import { configureStore, ThunkAction, Action, getDefaultMiddleware } from '@reduxjs/toolkit';
 import HomePageReducer from "./screens/homePage/slice";
+import ProductsPageReducer from "./screens/productsPage/slice";
 import reduxLogger from "redux-logger"
 
 

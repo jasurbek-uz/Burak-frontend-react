@@ -1,4 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
+import { createSelector } from "reselect";
 import { AppRootState } from "../../../lib/types/screen";
 
 const selectProductsPage = (state: AppRootState) => state.productsPage;
@@ -15,5 +15,5 @@ export const retrieveChosenProduct = createSelector(
 
 export const retrieveProducts = createSelector(
 		selectProductsPage,
-		(ProductsPage) => ProductsPage.Products
+		(ProductsPage) => ProductsPage.products
 	);

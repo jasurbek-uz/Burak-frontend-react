@@ -31,7 +31,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
 });
 const chosenProductRetriever = createSelector(
 	retrieveChosenProduct,
-	(chosenProduct) => ({ chosenProduct })
+	(chosenProduct) => ({ chosenProduct,})
 );
 const restaurantRetriever = createSelector(
   retrieveRestaurant,

@@ -25,20 +25,12 @@ import { useHistory } from "react-router-dom";
 const actionDispatch = (dispatch: Dispatch) => ({
 	setProducts: (data: Product[]) => dispatch(setProducts(data)),
 });
+
 const productsRetriever = createSelector(retrieveProducts, (products) => ({
 	products,
 }));
 
-const products = [
-	{ productName: "Cutlet", imagePath: "/img/cutlet.webp" },
-	{ productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
-	{ productName: "Lavash", imagePath: "/img/lavash.webp" },
-	{ productName: "Lavash", imagePath: "/img/lavash.webp" },
-	{ productName: "Cutlet", imagePath: "/img/cutlet.webp" },
-	{ productName: "Kebab", imagePath: "/img/kebab.webp" },
-	{ productName: "Kebab", imagePath: "/img/kebab-fresh.webp" },
-];
+
 
 export default function Products() {
 
@@ -129,37 +121,24 @@ export default function Products() {
 					<Stack className={"dishes-filter-section"}>
 						<Stack className={"dishes-filter-box"}>
 							<Button
-								variant={"contained"}
-								color={
-									productSearch.order === "createdAt" ? "primary" : "secondary"
-								}
-								className={"order"}
-								onClick={() => searchOrderHandler("createdAt")}
-							>
+                variant={"contained"}
+                className={"order"}
+								color={productSearch.order === "createdAt" ? "primary" : "secondary"}
+								onClick={() => searchOrderHandler("createdAt")}>
 								New
 							</Button>
 							<Button
-								variant={"contained"}
-								color={
-									productSearch.order === "productPrice"
-										? "primary"
-										: "secondary"
-								}
-								className={"order"}
-								onClick={() => searchOrderHandler("productPrice")}
-							>
+                variant={"contained"}
+                className={"order"}
+								color={productSearch.order === "productPrice"? "primary": "secondary"}
+								onClick={() => searchOrderHandler("productPrice")}>
 								Price
 							</Button>
 							<Button
-								variant={"contained"}
-								color={
-									productSearch.order === "productViews"
-										? "primary"
-										: "secondary"
-								}
-								className={"order"}
-								onClick={() => searchOrderHandler("productViews")}
-							>
+                variant={"contained"}
+                className={"order"}
+								color={productSearch.order === "productViews"? "primary": "secondary"}
+								onClick={() => searchOrderHandler("productViews")}>
 								Views
 							</Button>
 						</Stack>
@@ -171,14 +150,8 @@ export default function Products() {
 								<Button
 									variant={"contained"}
 									color={
-										productSearch.productCollection === ProductCollection.OTHER
-											? "primary"
-											: "secondary"
-									}
-									onClick={() =>
-										searchCollectionHandler(ProductCollection.OTHER)
-									}
-								>
+										productSearch.productCollection === ProductCollection.OTHER? "primary": "secondary"	}
+									onClick={() =>searchCollectionHandler(ProductCollection.OTHER)}>
 									Other
 								</Button>
 								<Button

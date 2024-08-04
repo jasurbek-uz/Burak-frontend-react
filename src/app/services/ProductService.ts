@@ -31,6 +31,7 @@ class ProductService {
       const url = `$(this.path)/product/${productId}`
       const result = await axios.get(url, { withCredentials: true });
       console.log("getProduct:", result);
+      
       return result.data;
     } catch (err) {
       console.log("Erros, getProducts:", err);

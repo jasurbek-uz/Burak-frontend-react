@@ -6,7 +6,7 @@ import ProductsPage from ".";
 const initialState: ProductsPageState = {
   restaurant : null,
   chosenProduct: null,
-  Products: []
+  products: []
 }
 const productsPageSlice = createSlice({
 	name: "productsPage",
@@ -19,7 +19,7 @@ const productsPageSlice = createSlice({
 			state.chosenProduct = action.payload;
 		},
 		setProducts: (state, action) => {
-			state.Products = action.payload;
+			state.products = action.payload;
 		},
 	},
 });
