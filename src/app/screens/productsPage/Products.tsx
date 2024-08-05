@@ -100,10 +100,10 @@ export default function Products() {
 									className={"single-search-input"}
 									name={"singleResearch"}
 									placeholder={"Type here"}
-                  value={"searchText"}
+                  value={searchText}
                   onChange={(e) => { setSearchText(e.target.value); }}
                   onKeyDown={(e) => {
-                    if (e.key === "Enter") searchProductHandler();
+                    if (e.key === "Enter") { searchProductHandler(); }
                   }}
 								/>
 								<Button
