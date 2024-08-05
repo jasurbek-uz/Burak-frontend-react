@@ -23,6 +23,7 @@ import ProductService from "../../services/ProductService";
 import MemberService from "../../services/MemberService";
 import { Member } from "../../../lib/types/member";
 import { serverApi } from "../../../lib/config";
+import { CartItem } from "../../../lib/types/search";
 
 // redux slice & selector
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -38,8 +39,12 @@ const restaurantRetriever = createSelector(
   (restaurant) => ({ restaurant, })
 );
 
+interface ChosenProductsProps {
+	onAdd: (item: CartItem) => void;
+}
 
-export default function ChosenProduct() {
+export default function ChosenProduct(props: ChosenProductsProps) {
+  const { onAdd } = props;
   const { productId } = useParams<{ productId: string }>();
   const { setRestaurant, setChosenProduct } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
