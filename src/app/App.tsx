@@ -37,6 +37,8 @@ function App() {
 					onRemove={onRemove}
 					onDelete={onDelete}
 					onDeleteAll={onDeleteAll}
+					setSignupOpen={setSignupOpen}
+					setLoginOpen={setLoginOpen}
 				/>
 			) : (
 				<OtherNavbar
@@ -45,6 +47,8 @@ function App() {
 					onRemove={onRemove}
 					onDelete={onDelete}
 					onDeleteAll={onDeleteAll}
+					setSignupOpen={setSignupOpen}
+					setLoginOpen={setLoginOpen}
 				/>
 			)}
 
@@ -70,7 +74,8 @@ function App() {
 			<AuthenticationModal
 				signupOpen={signupOpen}
 				loginOpen={loginOpen}
-				handleSignupClose={handleSignupClose}
+        handleSignupClose={handleSignupClose}
+        handleLoginClose={handleLoginClose}
 			/>
 		</>
 	);
