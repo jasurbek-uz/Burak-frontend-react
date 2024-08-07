@@ -64,13 +64,13 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 		console.log(e.target.value);
 		setMemberPassword(e.target.value);
 	};
-	const handlePasswordKeyDown = (e: T) => {
-		if (e.key === "Enter" && signupOpen) {
-			handleSignupRequest().then();
-		} else if (e.key === "Enter" && loginOpen) {
-			// login request
-		}
-	};
+	 const handlePasswordKeyDown = (e: T) => {
+			if (e.key === "Enter" && signupOpen) {
+				handleSignupRequest().then();
+			} else if (e.key === "Enter" && loginOpen) {
+				handleLoginRequest().then();
+			}
+		};
 
 	const handleSignupRequest = async () => {
 		try {
@@ -98,11 +98,11 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 		}
 	};
 
-	const handleLoginRequest = async () => {
+	
+  const handleLoginRequest = async () => {
 		try {
-			console.log("inputs:", memberNick, memberPassword);
-			const isFull = memberNick !== "" && memberPassword !== "";
-			if (isFull) throw new Error(Messages.error3);
+			const isFulfill = memberNick !== "" && memberPassword !== "";
+			if (!isFulfill) throw new Error(Messages.error3);
 
 			const loginInput: LoginInput = {
 				memberNick: memberNick,
@@ -112,9 +112,11 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 			const member = new MemberService();
 			const result = await member.login(loginInput);
 
+			//Saving Authenticatied User
+			setAuthMember(result);
 			handleLoginClose();
 		} catch (err) {
-			console.error("err");
+			console.log(err);
 			handleLoginClose();
 			sweetErrorHandling(err).then();
 		}

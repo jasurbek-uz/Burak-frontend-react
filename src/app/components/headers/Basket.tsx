@@ -40,9 +40,6 @@ export default function Basket(props: BasketProps) {
 
 
 
-
-  
-
   return (
 		<Box className={"hover-line"}>
 			<IconButton
