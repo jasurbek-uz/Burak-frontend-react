@@ -1,11 +1,18 @@
-import { Box, Button, Container, ListItemIcon, Menu, MenuItem, Stack } from "@mui/material";
+import {
+	Box,
+	Button,
+	Container,
+	ListItemIcon,
+	Menu,
+	MenuItem,
+	Stack,
+} from "@mui/material";
 import { NavLink } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 import Basket from "./Basket";
-import { useGlobals } from "../../hooks/useGlobal";
+import { useGlobals } from "../../hooks/useGlobals";
 import { serverApi } from "../../../lib/config";
 import { Logout } from "@mui/icons-material";
-
 
 interface OtherNavbarProps {
 	cartItems: CartItem[];
@@ -14,32 +21,31 @@ interface OtherNavbarProps {
 	onDelete: (item: CartItem) => void;
 	onDeleteAll: () => void;
 	setSignupOpen: (isOpen: boolean) => void;
-  setLoginOpen: (isOpen: boolean) => void;
-  // login process
+	setLoginOpen: (isOpen: boolean) => void;
+	// login process
 	handleLogoutClick: (e: React.MouseEvent<HTMLElement>) => void;
 	anchorEl: HTMLElement | null;
 	handleCloseLogout: () => void;
 	handleLogoutRequest: () => void;
 }
 export default function OtherNavbar(props: OtherNavbarProps) {
-  const {
+	const {
 		cartItems,
 		onAdd,
 		onRemove,
 		onDelete,
 		onDeleteAll,
 		setSignupOpen,
-    setLoginOpen,
-    handleLogoutClick,
+		setLoginOpen,
+		handleLogoutClick,
 		anchorEl,
 		handleCloseLogout,
 		handleLogoutRequest,
 	} = props;
-  // const authMember = null;
-   const { authMember } = useGlobals();
 
+	const { authMember } = useGlobals();
 
-  return (
+	return (
 		<div className="other-navbar">
 			<Container className="navbar-container">
 				<Stack className="menu">
@@ -153,5 +159,5 @@ export default function OtherNavbar(props: OtherNavbarProps) {
 				</Stack>
 			</Container>
 		</div>
-	);  
+	);
 }

@@ -38,6 +38,11 @@ export default function Basket(props: BasketProps) {
     setAnchorEl(null);
   };
 
+
+
+
+  
+
   return (
 		<Box className={"hover-line"}>
 			<IconButton
@@ -115,7 +120,7 @@ export default function Basket(props: BasketProps) {
 												onClick={() => onDelete(item)}
 											/>
 										</div>
-										<img src={"/img/fresh.webp"} className={"product-img"} />
+										<img src={imagePath} className={"product-img"} />
 										<span className={"product-name"}>{item.name}</span>
 										<p className={"product-price"}>
 											${item.price}x {item.quantity}{" "}

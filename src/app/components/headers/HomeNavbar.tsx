@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
 import { useEffect, useState } from "react";
 import { CartItem } from "../../../lib/types/search";
-import { useGlobals } from "../../hooks/useGlobal";
+import { useGlobals } from "../../hooks/useGlobals";
 import { serverApi } from "../../../lib/config";
 import { ListItemIcon } from "@material-ui/core";
 import { Logout } from "@mui/icons-material";
@@ -19,30 +19,27 @@ interface HomeNavbarProps {
 	handleLogoutClick: (e: React.MouseEvent<HTMLElement>) => void;
 	anchorEl: HTMLElement | null;
 	handleCloseLogout: () => void;
-  handleLogoutRequest: () => void;
-} 
+	handleLogoutRequest: () => void;
+}
 
 export default function HomeNavbar(props: HomeNavbarProps) {
-   const {
-			cartItems,
-			onAdd,
-			onRemove,
-			onDelete,
-			onDeleteAll,
-			setSignupOpen,
-			setLoginOpen,
-			handleLogoutClick,
-			anchorEl,
-			handleCloseLogout,
-			handleLogoutRequest,
-		} = props;
-  // const authMember = null;
-  const { authMember} = useGlobals();
-  
-  
-  /**handlers **/
-  
-  
+	const {
+		cartItems,
+		onAdd,
+		onRemove,
+		onDelete,
+		onDeleteAll,
+		setSignupOpen,
+		setLoginOpen,
+		handleLogoutClick,
+		anchorEl,
+		handleCloseLogout,
+		handleLogoutRequest,
+	} = props;
+
+	const { authMember } = useGlobals();
+
+	/**handlers **/
 
 	return (
 		<div className="home-navbar">

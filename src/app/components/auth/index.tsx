@@ -11,101 +11,97 @@ import { Messages } from "../../../lib/config";
 import { LoginInput, MemberInput } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
-import { useGlobals } from "../../hooks/useGlobal";
+import { useGlobals } from "../../hooks/useGlobals";
 
 const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 2, 2),
-  },
+	modal: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "center",
+	},
+	paper: {
+		backgroundColor: theme.palette.background.paper,
+		border: "2px solid #000",
+		boxShadow: theme.shadows[5],
+		padding: theme.spacing(2, 2, 2),
+	},
 }));
 
 const ModalImg = styled.img`
-  width: 62%;
-  height: 100%;
-  border-radius: 10px;
-  background: #000;
-  margin-top: 9px;
-  margin-left: 10px;
+	width: 62%;
+	height: 100%;
+	border-radius: 10px;
+	background: #000;
+	margin-top: 9px;
+	margin-left: 10px;
 `;
 
 interface AuthenticationModalProps {
-  signupOpen: boolean;
-  loginOpen: boolean;
-  handleSignupClose: () => void;
-  handleLoginClose: () => void;
+	signupOpen: boolean;
+	loginOpen: boolean;
+	handleSignupClose: () => void;
+	handleLoginClose: () => void;
 }
 
 export default function AuthenticationModal(props: AuthenticationModalProps) {
-  const { signupOpen, loginOpen, handleSignupClose, handleLoginClose } = props;
-  const classes = useStyles();
-  const [memberNick, setMemberNick] = useState<string>("")
-  const [memberPhone, setMemberPhone] = useState<string>("")
-  const [memberPassword, setMemberPassword] = useState<string>("")
-  const {setAuthMember} = useGlobals();
+	const { signupOpen, loginOpen, handleSignupClose, handleLoginClose } = props;
+	const classes = useStyles();
+	const [memberNick, setMemberNick] = useState<string>("");
+	const [memberPhone, setMemberPhone] = useState<string>("");
+	const [memberPassword, setMemberPassword] = useState<string>("");
+	const { setAuthMember } = useGlobals();
 
-  // handlers//
-  const handleUsername = (e: T) => {
-    console.log(e.target.value);
-    setMemberNick(e.target.value);
-  };
-  const handlePhone = (e: T) => {
+	// handlers//
+	const handleUsername = (e: T) => {
+		console.log(e.target.value);
+		setMemberNick(e.target.value);
+	};
+	const handlePhone = (e: T) => {
 		console.log(e.target.value);
 		setMemberPhone(e.target.value);
-  };
-  const handlePassword = (e: T) => {
-    console.log(e.target.value);
+	};
+	const handlePassword = (e: T) => {
+		console.log(e.target.value);
 		setMemberPassword(e.target.value);
-  };
-  const handlePasswordKeyDown = (e: T) => {
-    if (e.key === "Enter" && signupOpen) {
-      handleSignupRequest().then();
-    } else if (e.key === "Enter" && loginOpen) {
-      // login request
+	};
+	const handlePasswordKeyDown = (e: T) => {
+		if (e.key === "Enter" && signupOpen) {
+			handleSignupRequest().then();
+		} else if (e.key === "Enter" && loginOpen) {
+			// login request
 		}
-  }
-  
+	};
 
-  
-  const handleSignupRequest = async () => {
-    try {
-      console.log("inputs:", memberNick, memberPhone, memberPassword);
-      const isFull = memberNick !== "" && memberPhone !== "" && memberPassword !== "";
-      if (isFull) throw new Error(Messages.error3);
+	const handleSignupRequest = async () => {
+		try {
+			console.log("inputs:", memberNick, memberPhone, memberPassword);
+			const isFull =
+				memberNick !== "" && memberPhone !== "" && memberPassword !== "";
+			if (isFull) throw new Error(Messages.error3);
 
-      const signupInput: MemberInput = {
-        memberNick: memberNick,
-        memberPhone: memberPhone,
-        memberPassword: memberPassword,
-        
-      };
+			const signupInput: MemberInput = {
+				memberNick: memberNick,
+				memberPhone: memberPhone,
+				memberPassword: memberPassword,
+			};
 
-      const member = new MemberService();
-      const result = await member.signup(signupInput);
+			const member = new MemberService();
+			const result = await member.signup(signupInput);
 
-      // saving authentication  user
-      setAuthMember(result);
-      handleSignupClose();
+			// saving authentication  user
+			setAuthMember(result);
+			handleSignupClose();
+		} catch (err) {
+			console.error("err");
+			handleSignupClose();
+			sweetErrorHandling(err).then();
+		}
+	};
 
-    } catch (err) {
-      console.error("err");
-       handleSignupClose();
-      sweetErrorHandling(err).then();
-    }
-  }
-
-  const handleLoginRequest = async () => {
+	const handleLoginRequest = async () => {
 		try {
 			console.log("inputs:", memberNick, memberPassword);
-			const isFull =
-				memberNick !== ""  && memberPassword !== "";
+			const isFull = memberNick !== "" && memberPassword !== "";
 			if (isFull) throw new Error(Messages.error3);
 
 			const loginInput: LoginInput = {
@@ -114,8 +110,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 			};
 
 			const member = new MemberService();
-      const result = await member.login(loginInput);
-      
+			const result = await member.login(loginInput);
+
 			handleLoginClose();
 		} catch (err) {
 			console.error("err");
@@ -124,7 +120,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 		}
 	};
 
-  return (
+	return (
 		<div>
 			<Modal
 				aria-labelledby="transition-modal-title"
