@@ -6,11 +6,29 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
-import "../../../css/order.css";
 import { useState, SyntheticEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setPausedOrders, setProcessOrders, setFinishidOrders } from "./slice";
+import "../../../css/order.css";
+import { Order } from "../../../lib/types/orders";
+
+
+/** Redux Slice & Selector */
+const actionDispatch = (dispatch: Dispatch) => ({
+	setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
+	setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
+	setFinishidOrders: (data: Order[]) => dispatch(setFinishidOrders(data)),
+});
+
 
 export default function OrdersPage() {
-	const [value, setValue] = useState("1");
+  const { setPausedOrders, setProcessOrders, setFinishidOrders } =
+		actionDispatch(useDispatch());
+  const [value, setValue] = useState("1");
+  
+
+  // Handlers
 
 	const handleChange = (e: SyntheticEvent, newValue: string) => {
 		setValue(newValue);
