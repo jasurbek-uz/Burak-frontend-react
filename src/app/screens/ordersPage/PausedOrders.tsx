@@ -18,7 +18,10 @@ const pausedOrdersRetriever = createSelector(
 
 
 export default function PausedOrders() {
-		const { pausedOrders } = useSelector(pausedOrdersRetriever);
+  const { pausedOrders } = useSelector(pausedOrdersRetriever);
+  
+  // handlers //
+
 	return (
 		<TabPanel value={"1"}>
 			<Stack>
@@ -41,7 +44,8 @@ export default function PausedOrders() {
                         <img src={"/icons/close.svg"} />
                         <p>{item.itemQuantity}</p>
                         <img src={"/icons/pause.svg"} />
-                        <p style={{ marginLeft: "15px" }}>${item.itemQuantity * item.itemPrice}</p>
+                        <p style={{ marginLeft: "15px" }}>
+                          ${item.itemQuantity * item.itemPrice}</p>
                       </Box>
                     </Box>
                   )
