@@ -6,12 +6,14 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
 import FinishedOrders from "./FinishedOrders";
-import { useState, SyntheticEvent } from "react";
+import { useState, SyntheticEvent, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setPausedOrders, setProcessOrders, setFinishidOrders } from "./slice";
 import "../../../css/order.css";
-import { Order } from "../../../lib/types/orders";
+import { Order, OrderInquiry } from "../../../lib/types/orders";
+import { OrderStatus } from "../../../lib/enums/order.enum";
+import OrderService from "../../services/OrderService";
 
 
 /** Redux Slice & Selector */
@@ -24,12 +26,33 @@ const actionDispatch = (dispatch: Dispatch) => ({
 
 export default function OrdersPage() {
   const { setPausedOrders, setProcessOrders, setFinishidOrders } =
-		actionDispatch(useDispatch());
+    actionDispatch(useDispatch());
   const [value, setValue] = useState("1");
+  const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
+    page: 1,
+    limit: 5,
+    orderStatus: OrderStatus.PAUSE,});
   
+  useEffect(() => {
+    const order = new OrderService();
 
-  // Handlers
-
+    order
+      .getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PAUSE })
+      .then((data) => setPausedOrders(data))
+      .catch((err) => console.log(err));
+    
+    order
+			.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.PROCESS })
+			.then((data) => setProcessOrders(data))
+			.catch((err) => console.log(err));
+    
+    order
+			.getMyOrders({ ...orderInquiry, orderStatus: OrderStatus.FINISH })
+			.then((data) => setFinishidOrders(data))
+			.catch((err) => console.log(err));
+  }, [orderInquiry]);
+  
+  // Handlers//
 	const handleChange = (e: SyntheticEvent, newValue: string) => {
 		setValue(newValue);
 	};
