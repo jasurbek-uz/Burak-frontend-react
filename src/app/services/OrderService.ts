@@ -49,15 +49,15 @@ class OrderService {
 		}
 	}
 
-	public async updateOrder(input: OrderUpdateInput): Promise<Order> {
+	public async updateOrders(input: OrderUpdateInput): Promise<Order> {
 		try {
       const url = `${this.path}/order/update`;
       const result = await axios.post(url, input, { withCredentials: true });
-      console.log("updateOrder:", result);
+      console.log("updateOrders:", result);
 
       return result.data;
 		} catch (err) {
-			console.log("Error. updateOrder:", err);
+			console.log("Error. updateOrders:", err);
 			throw err;
 		}
 	}

@@ -45,7 +45,7 @@ export default function PausedOrders(props: PausedOrdersProps) {
 			const confirmation = window.confirm("Do you want to delete the order?");
 			if (confirmation) {
 				const order = new OrderService();
-				await order.updateOrder(input);
+				await order.updateOrders(input);
 				setOrderBuilder(new Date());
 			}
 		} catch (err) {
@@ -67,9 +67,9 @@ export default function PausedOrders(props: PausedOrdersProps) {
       const confirmation = window.confirm("Do you want to proceed with payment?");
       if (confirmation) {
         const order = new OrderService();
-        await order.updateOrder(input);
+        await order.updateOrders(input);
         setValue("2");
-        setOrderBuilder(new Date);
+        setOrderBuilder(new Date());
 
       }
     } catch (err) {
@@ -135,7 +135,8 @@ export default function PausedOrders(props: PausedOrdersProps) {
 								<Button
 									value={order._id}
 									variant="contained"
-									className={"pay-button"}
+                  className={"pay-button"}
+                  onClick={processOrderHandler}
 									>
 									Payment
 								</Button>
