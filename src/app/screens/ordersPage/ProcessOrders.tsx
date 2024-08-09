@@ -46,7 +46,7 @@ export default function ProcessOrders(props: ProcessOrdersProps) {
 				);
 				if (confirmation) {
 					const order = new OrderService();
-					await order.updateOrder(input);
+					await order.updateOrders(input);
 					setValue("3");
 					setOrderBuilder(new Date());
 				}
