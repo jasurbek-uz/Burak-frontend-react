@@ -11,7 +11,7 @@ import MemberService from "../../services/MemberService";
 
 export function Settings() {
   const { authMember, setAuthMember } = useGlobals();
- const [memberimage, setMemberImage] = useState<string>(
+ const [memberImage, setMemberImage] = useState<string>(
 		authMember?.memberImage
 			? `${serverApi}/${authMember.memberImage}`
 			: "/icons/default-user.svg"
@@ -29,22 +29,22 @@ export function Settings() {
   // handlers //
   
   const memberNickHandler = (e: T) => {
-    memberUpdateInput.memberNick = e.tartget.value;
+    memberUpdateInput.memberNick = e.target.value;
     setMemberUpdateInput ({...memberUpdateInput})
   }
 
   const memberPhoneHandler = (e: T) => {
-		memberUpdateInput.memberPhone = e.tartget.value;
+		memberUpdateInput.memberPhone = e.target.value;
 		setMemberUpdateInput({ ...memberUpdateInput });
   };
 
   const memberDescriptionHandler = (e: T) => {
-		memberUpdateInput.memberDesc = e.tartget.value;
+		memberUpdateInput.memberDesc = e.target.value;
 		setMemberUpdateInput({ ...memberUpdateInput });
   };
   
   const memberAddressHandler = (e: T) => {
-		memberUpdateInput.memberAddress = e.tartget.value;
+		memberUpdateInput.memberAddress = e.target.value;
 		setMemberUpdateInput({ ...memberUpdateInput });
   };
   
@@ -72,7 +72,7 @@ export function Settings() {
   }
 
   const handleImageViewer = (e: T) => {
-    const file = e.tartget.file[0];
+    const file = e.target.files[0];
     console.log("file:", file)
     const fileType = file.type,
       validateImageTypes = ["image/jpg", "image/jpeg", "image/png"];
@@ -92,7 +92,7 @@ export function Settings() {
   return (
 		<Box className={"settings"}>
 			<Box className={"member-media-frame"}>
-				<img src={memberimage} className={"mb-image"} />
+				<img src={memberImage} className={"mb-image"} />
 				<div className={"media-change-box"}>
 					<span>Upload image</span>
 					<p>JPG, JPEG, PNG formats only!</p>

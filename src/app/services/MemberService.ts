@@ -99,8 +99,8 @@ class MemberService {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data",
-        }  
-         })
+        }
+      });
       console.log("updateMember:", result);
       
       const member: Member = result.data;
