@@ -88,10 +88,10 @@ class MemberService {
 		try {
       const formData = new FormData();
       formData.append("memberNick", input.memberNick || "");
-      formData.append("memberNick", input.memberPhone || "");
-      formData.append("memberNick", input.memberAddress || "");
-      formData.append("memberNick", input.memberDesc || "");
-      formData.append("memberNick", input.memberImage || "");
+      formData.append("memberPhone", input.memberPhone || "");
+      formData.append("memberAddress", input.memberAddress || "");
+      formData.append("memberDesc", input.memberDesc || "");
+      formData.append("memberImage", input.memberImage || "");
 
       const result = await axios(`${serverApi}/member/update`, {
         method: "POST",

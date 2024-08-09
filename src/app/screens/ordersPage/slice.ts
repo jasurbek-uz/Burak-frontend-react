@@ -8,7 +8,7 @@ const initialState: OrdersPageState = {
 };
 
 const ordersPageSlice = createSlice({
-	name: "orderPage", // confussion  ordersPage
+	name: "ordersPage", 
 	initialState,
 	reducers: {
 		setPausedOrders(state, action) {

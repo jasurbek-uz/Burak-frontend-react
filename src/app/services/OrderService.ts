@@ -11,16 +11,16 @@ class OrderService {
 	}
 
 	public async createOrder(input: CartItem[]): Promise<Order[]> {
-		try {
-			const orderItems: OrderItemInput[] = input.map((cartItem: CartItem) => {
-				return {
-					itemQuantity: cartItem.quantity,
-					itemPrice: cartItem.price,
-					productId: cartItem._id,
-				};
-			});
+    try {
+      const orderItems: OrderItemInput[] = input.map((cartItem: CartItem) => {
+        return {
+          itemQuantity: cartItem.quantity,
+          itemPrice: cartItem.price,
+          productId: cartItem._id,
+        };
+      });
 
-			const url = `${this.path}/order/create`;
+      const url = `${this.path}/order/create`;
 			const result = await axios.post(url, orderItems, {
 				withCredentials: true,
 			});

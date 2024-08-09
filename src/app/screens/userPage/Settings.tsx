@@ -88,8 +88,6 @@ export function Settings() {
     }
   }
   
-    
-  
   
   return (
 		<Box className={"settings"}>
@@ -152,9 +150,7 @@ export function Settings() {
 					<label className={"spec-label"}>Description</label>
 					<textarea
 						className={"spec-textarea mb-description"}
-						placeholder={
-							authMember?.memberDesc ? authMember.memberDesc : "no description"
-						}
+						placeholder={authMember?.memberDesc ? authMember.memberDesc : "no description"}
 						value={memberUpdateInput.memberDesc}
 						name="memberDesc"
 						onChange={memberDescriptionHandler}

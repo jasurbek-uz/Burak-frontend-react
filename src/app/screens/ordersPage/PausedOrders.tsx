@@ -31,8 +31,29 @@ export default function PausedOrders(props: PausedOrdersProps) {
   const { authMember, setOrderBuilder} = useGlobals();
   const { pausedOrders } = useSelector(pausedOrdersRetriever);
 
-  
-  // handlers //
+
+ // handlers //
+  const deleteOrderHandler = async (e: T) => {
+		try {
+			if (!authMember) throw new Error(Messages.error2);
+			const orderId = e.target.value;
+			const input: OrderUpdateInput = {
+				orderId: orderId,
+				orderStatus: OrderStatus.DELETE,
+			};
+
+			const confirmation = window.confirm("Do you want to delete the order?");
+			if (confirmation) {
+				const order = new OrderService();
+				await order.updateOrder(input);
+				setOrderBuilder(new Date());
+			}
+		} catch (err) {
+			console.log(err);
+			sweetErrorHandling(err).then();
+		}
+	};
+ 
   const processOrderHandler = async (e:T) => {
     try {
       if (!authMember) throw new Error(Messages.error2);
@@ -57,27 +78,6 @@ export default function PausedOrders(props: PausedOrdersProps) {
         .then();
     }
   }
-
-  const deleteOrderHandler = async (e: T) => {
-		try {
-			if (!authMember) throw new Error(Messages.error2);
-			const orderId = e.target.value;
-			const input: OrderUpdateInput = {
-				orderId: orderId,
-				orderStatus: OrderStatus.DELETE,
-			};
-
-			const confirmation = window.confirm("Do you want to delete the order?");
-			if (confirmation) {
-				const order = new OrderService();
-				await order.updateOrder(input);
-				setOrderBuilder(new Date());
-			}
-		} catch (err) {
-			console.log(err);
-			sweetErrorHandling(err).then();
-		}
-	};
 
 	return (
 		<TabPanel value={"1"}>
@@ -136,22 +136,21 @@ export default function PausedOrders(props: PausedOrdersProps) {
 									value={order._id}
 									variant="contained"
 									className={"pay-button"}
-									onClick={processOrderHandler}
-								>
+									>
 									Payment
 								</Button>
 							</Box>
 						</Box>
 					);
         })}
-				 { !pausedOrders || (pausedOrders.length=== 0) &&(
+				 { !pausedOrders || (pausedOrders.length === 0 &&(
 					<Box display={"flex"} flexDirection={"row"} justifyContent={"center"}>
 						<img
 							src={"/icons/noimage-list.svg"}
 							style={{ width: 300, height: 300 }}
 						/>
 					</Box>
-				)}
+				))}
 			</Stack>
 		</TabPanel>
 	);
